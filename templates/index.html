@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dr. AI Medicare - Intelligent Clinical Decision &amp; Healthcare AI Platform</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=2.5.0">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <!-- Top Global Announcement Banner -->
+  <div class="top-announcement">
+    <span>🏥 Advanced Clinical Decision Support System • Dr. AI Medicare Intelligent Healthcare Network</span>
+  </div>
+
+  <!-- Main Header: Clinical Badge (Left) | Doctor Logo (Center) | Google Login (Right) -->
+  <header class="site-header">
+    <div class="header-container">
+      
+      <!-- Header Left: Clinical Healthcare Network Emblem -->
+      <div class="header-left">
+        <div class="who-badge" style="cursor: default;" title="Certified Clinical Healthcare Network">
+          <div style="font-size: 1.6rem; line-height: 1;">🛡️</div>
+          <div>
+            <div style="font-size: 0.72rem; text-transform: uppercase; color: #0284c7; font-weight: 700;">Clinical Care Network</div>
+            <div style="font-size: 0.82rem; color: #0f172a; font-weight: 800; line-height: 1;">Global Health Protocols</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Center: DOCTOR LOGO IN THE MIDDLE & DR. AI MEDICARE BRANDING -->
+      <div class="header-center">
+        <a href="/" class="logo-wrapper" title="Dr. AI Medicare">
+          <div class="doctor-emblem-box">
+            <img src="/static/images/dr-pruthve-logo.svg" alt="Dr. AI Medicare Clinical Emblem" class="doctor-emblem-img">
+          </div>
+          <div class="brand-text">
+            <h1>Dr. <span>AI Medicare</span></h1>
+            <div class="brand-subtitle">Clinical Decision Support &amp; Healthcare AI Network</div>
+          </div>
+        </a>
+      </div>
+
+      <!-- Header Right: Language Selector, Google / Gmail Sign-In & AI Studio Config -->
+      <div class="header-right">
+        <!-- Multi-Language Selector Dropdown -->
+        <div class="lang-selector-wrapper" title="Select Language / भाषा चुनें / భాషను ఎంచుకోండి">
+          <span style="font-size: 1.05rem;">🌐</span>
+          <select id="select-site-language" class="lang-dropdown">
+            <option value="en" selected>English</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="te">తెలుగు (Telugu)</option>
+            <option value="ta">தமிழ் (Tamil)</option>
+            <option value="kn">ಕನ್ನಡ (Kannada)</option>
+            <option value="es">Español (Spanish)</option>
+          </select>
+        </div>
+
+        <!-- Google Sign-in Button & Profile Badge -->
+        <div id="google-auth-container" style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-google-sign-in" id="btn-open-google-login" title="Sign in with your Google or Gmail account">
+            <img src="/static/images/google-logo.svg" alt="Google Logo" class="google-icon-sm">
+            <span id="google-login-btn-text">Sign in with Google</span>
+          </button>
+          
+          <div id="google-user-profile-badge" style="display: none; align-items: center; gap: 8px; background: #ffffff; border: 1.5px solid #4285f4; border-radius: 999px; padding: 4px 12px 4px 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+            <div style="width: 28px; height: 28px; border-radius: 50%; background: #4285f4; color: #fff; font-weight: 800; font-size: 0.8rem; display: flex; align-items: center; justify-content: center;" id="google-user-avatar">
+              G
+            </div>
+            <div style="line-height: 1.1; text-align: left;">
+              <div style="font-size: 0.82rem; font-weight: 700; color: #202124;" id="google-user-display-name">Alex Morgan</div>
+              <div style="font-size: 0.72rem; color: #15803d; font-weight: 600;" id="google-user-display-email">alex.morgan@gmail.com</div>
+            </div>
+            <button type="button" id="btn-google-signout" title="Sign out of Google account" style="background: none; border: none; color: #dc2626; font-size: 0.75rem; font-weight: 700; cursor: pointer; padding: 2px 4px; margin-left: 4px;">
+              Sign out
+            </button>
+          </div>
+        </div>
+
+        <!-- Google AI Studio Key Button -->
+        <button class="btn btn-secondary btn-sm" id="btn-open-gemini-modal" title="Manage Google AI Studio API Key" style="padding: 7px 12px;">
+          <span id="gemini-status-indicator">🔑 AI Studio Key</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- MODULE BOXES DIRECTLY INSIDE HEADER (Requested by User) -->
+    <div class="header-modules-bar">
+      <div class="header-modules-grid">
+        
+        <!-- Box 1: PDF Medical Report Analyzer -->
+        <button class="header-module-box tab-btn active" data-tab="tab-analyzer" id="header-box-analyzer">
+          <div class="module-box-icon">📄</div>
+          <div class="module-box-body">
+            <div class="module-box-title">1. PDF Medical Report Analyzer</div>
+            <div class="module-box-meta">
+              <span class="module-box-pill">Instant PDF Out</span>
+              <span class="module-box-desc">Zero typing required</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Box 2: Medicine Reminder & Pharmacy Store -->
+        <button class="header-module-box tab-btn" data-tab="tab-medications" id="header-box-meds">
+          <div class="module-box-icon">💊</div>
+          <div class="module-box-body">
+            <div class="module-box-title">2. Medicine Reminder &amp; Pharmacy Store</div>
+            <div class="module-box-meta">
+              <span class="module-box-pill">Doorstep Delivery</span>
+              <span class="module-box-desc">Adherence &amp; Online Meds</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Box 3: Live Nearby Hospitals & Clinics -->
+        <button class="header-module-box tab-btn" data-tab="tab-hospitals" id="header-box-hospitals">
+          <div class="module-box-icon">🏥</div>
+          <div class="module-box-body">
+            <div class="module-box-title">3. Live Nearby Hospitals &amp; Clinics</div>
+            <div class="module-box-meta">
+              <span class="module-box-pill pill-active">Google Maps Active</span>
+              <span class="module-box-desc">Emergency Wait &amp; ICU Beds</span>
+            </div>
+          </div>
+        </button>
+
+        <!-- Box 4: Patient Health Profile -->
+        <button class="header-module-box tab-btn" data-tab="tab-profile" id="header-box-profile">
+          <div class="module-box-icon">👤</div>
+          <div class="module-box-body">
+            <div class="module-box-title">Patient Health Profile</div>
+            <div class="module-box-meta">
+              <span class="module-box-pill">Medical ID</span>
+              <span class="module-box-desc">Caregiver Info</span>
+            </div>
+          </div>
+        </button>
+
+      </div>
+    </div>
+  </header>
+
+  <!-- Central Doctor Hero Banner (White Background & Centered Logo) -->
+  <section class="hero-branding-section">
+    <div class="hero-content">
+      <div class="hero-doctor-badge">
+        <img src="/static/images/dr-pruthve-logo.svg" alt="Dr. AI Medicare Clinical Emblem" class="hero-doctor-img">
+      </div>
+      <h2 class="hero-title">Welcome to <span>Dr. AI Medicare</span></h2>
+      <p class="hero-desc">
+        Designed for everyone — whether educated, elderly, or everyday patients. Simply upload your doctor or lab 
+        <strong>PDF report</strong> and our AI reads every medical value automatically, predicts disease or viral risks, 
+        speaks aloud the doctor's advice, and outputs a clear Clinical PDF!
+      </p>
+      
+      <div class="hero-highlights">
+        <span class="highlight-pill">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          Certified Clinical Support Standards
+        </span>
+        <span class="highlight-pill">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          100% PDF-Driven (Zero Questions Asked)
+        </span>
+        <span class="highlight-pill">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"></path></svg>
+          AI Voice Audio Doctor Advisor
+        </span>
+        <span class="highlight-pill">
+          <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          Medicine Reminders &amp; Caregiver Alerts
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Body Content -->
+  <main class="main-content">
+
+    <!-- ========================================================
+         TAB 1: 100% PDF-DRIVEN AI MEDICAL REPORT ANALYZER
+         (ZERO QUESTIONS ASKED TO USER / ACCESSIBLE FOR ALL PATIENTS)
+         ======================================================== -->
+    <div class="tab-pane active" id="tab-analyzer">
+      
+      <!-- ========================================================
+           PROMINENT FEATURE: DR. AI MEDICARE VOICE AUDIO DOCTOR ADVISOR
+           ======================================================== -->
+      <div class="card voice-advisor-card" style="margin-bottom: 24px; border: 2px solid var(--primary-teal); background: linear-gradient(135deg, #ffffff 0%, #f0fdfa 100%);">
+        <div class="card-header" style="background: linear-gradient(90deg, #0f766e, #0d9488); color: #ffffff; padding: 14px 20px; border-radius: var(--radius-md) var(--radius-md) 0 0;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">🔊</span>
+            <div>
+              <h3 class="card-title" style="color: #ffffff; font-size: 1.15rem; margin: 0;">Dr. AI Medicare Voice Doctor &amp; Spoken Health Advisor</h3>
+              <p class="card-subtitle" style="color: #ccfbf1; margin-top: 2px;">
+                Listen to doctor's spoken medical guidance, daily prevention advice, or your analyzed lab report aloud.
+              </p>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <span id="voice-advisor-status-badge" style="background: #134e4a; color: #a7f3d0; font-size: 0.76rem; font-weight: 700; padding: 4px 10px; border-radius: 999px;">
+              ● Voice Engine Ready
+            </span>
+          </div>
+        </div>
+
+        <div style="padding: 18px 20px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 14px;">
+            <!-- Voice Topic & Language Selector -->
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap; flex: 1;">
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary);">Topic:</span>
+              <select id="select-voice-topic" class="form-select" style="width: auto; min-width: 220px; padding: 6px 12px; font-size: 0.86rem; border: 1.5px solid var(--border-light);">
+                <option value="welcome">👨‍⚕️ Welcome &amp; How Dr. AI Medicare Works</option>
+                <option value="chronic">🩺 Daily Chronic Disease Prevention (Sugar, BP &amp; Heart)</option>
+                <option value="medication">💊 Medication Safety &amp; What To Do If You Miss A Dose</option>
+                <option value="report">📄 Spoken Doctor Summary from Latest Lab Report</option>
+                <option value="emergency">🚨 When To Seek Immediate Emergency Care</option>
+              </select>
+
+              <!-- Language & Voice Switcher -->
+              <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); margin-left: 6px;">Voice Language:</span>
+              <select id="select-voice-language-card" class="form-select" style="width: auto; min-width: 170px; padding: 6px 10px; font-size: 0.85rem; font-weight: 700; color: #0d9488; border: 1.5px solid #0d9488; background: #f0fdfa;">
+                <option value="en">🇬🇧 English Voice</option>
+                <option value="hi">🇮🇳 हिन्दी Voice (Hindi)</option>
+                <option value="te">🇮🇳 తెలుగు Voice (Telugu)</option>
+                <option value="ta">🇮🇳 தமிழ் Voice (Tamil)</option>
+                <option value="kn">🇮🇳 ಕನ್ನಡ Voice (Kannada)</option>
+                <option value="es">🇪🇸 Español Voice (Spanish)</option>
+              </select>
+            </div>
+
+            <!-- Voice Controls -->
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button class="btn btn-primary btn-sm" id="btn-play-voice-advisor" style="background: #0d9488; border-color: #0d9488; display: flex; align-items: center; gap: 6px;">
+                <span>▶️ Listen to Doctor's Voice</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-pause-voice-advisor" style="display: none;">
+                <span>⏸️ Pause</span>
+              </button>
+              <button class="btn btn-secondary btn-sm" id="btn-stop-voice-advisor">
+                <span>⏹️ Stop</span>
+              </button>
+              <select id="voice-speed-select" class="form-select" style="width: auto; padding: 4px 8px; font-size: 0.8rem;">
+                <option value="0.9">0.9x (Gentle)</option>
+                <option value="1.0" selected>1.0x (Normal)</option>
+                <option value="1.15">1.15x (Brisk)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Spoken Output & Animated Waveform -->
+          <div style="background: #ffffff; border: 1.5px solid #99f6e4; border-radius: var(--radius-md); padding: 14px 18px; display: flex; align-items: flex-start; gap: 14px;">
+            <div style="width: 48px; height: 48px; border-radius: 50%; background: #ccfbf1; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; flex-shrink: 0; box-shadow: var(--shadow-sm);">
+              👨‍⚕️
+            </div>
+            <div style="flex: 1;">
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px;">
+                <strong style="color: var(--primary-dark); font-size: 0.95rem;">Dr. AI Medicare Spoken Clinical Guidance:</strong>
+                <!-- Audio Wave Visualizer Bars -->
+                <div class="audio-waveform-bars" id="audio-waveform-bars" style="display: none; align-items: center; gap: 3px; height: 16px;">
+                  <span class="wave-bar" style="display: inline-block; width: 3px; height: 14px; background: #0d9488; border-radius: 2px;"></span>
+                  <span class="wave-bar" style="display: inline-block; width: 3px; height: 18px; background: #14b8a6; border-radius: 2px;"></span>
+                  <span class="wave-bar" style="display: inline-block; width: 3px; height: 10px; background: #0d9488; border-radius: 2px;"></span>
+                  <span class="wave-bar" style="display: inline-block; width: 3px; height: 16px; background: #14b8a6; border-radius: 2px;"></span>
+                  <span class="wave-bar" style="display: inline-block; width: 3px; height: 12px; background: #0d9488; border-radius: 2px;"></span>
+                </div>
+              </div>
+              <p id="voice-transcript-display" style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.55; margin: 0;">
+                Click "Listen to Doctor's Voice" above to hear Dr. AI Medicare explain how to upload your medical PDF, monitor health vitals, track daily prescriptions, or locate nearby hospitals.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        
+        <!-- Left Column: Master PDF Dropzone & 1-Click Sample Reports -->
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                Drop or Upload Your Medical Report PDF
+              </h3>
+              <p class="card-subtitle">Zero typing needed — AI extracts all vitals &amp; symptoms from the document</p>
+            </div>
+            <span class="text-xs" style="color: var(--primary-teal); font-weight: 700; background: var(--primary-light); padding: 4px 8px; border-radius: 4px;">
+              Clinical Standard
+            </span>
+          </div>
+
+          <!-- Big User-Friendly PDF Dropzone -->
+          <div class="pdf-master-dropzone" id="pdf-master-dropzone">
+            <input type="file" id="pdf-file-input" accept=".pdf,.txt,.png,.jpg,.jpeg" style="display: none;">
+            <svg class="pdf-hero-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            <div class="dropzone-main-text">Drop Your Medical / Lab PDF Report Here</div>
+            <div class="dropzone-sub-text">
+              Works with hospital discharge summaries, blood test reports, prescriptions, or doctor notes.
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="btn-browse-pdf">
+              📁 Choose PDF File From Device
+            </button>
+
+            <!-- Loading Spinner inside dropzone -->
+            <div id="pdf-uploading-spinner" style="display: none; margin-top: 14px;">
+              <span class="pulse-indicator"></span>
+              <strong style="color: var(--primary-dark); margin-left: 8px;">AI is reading your PDF report and extracting lab values...</strong>
+            </div>
+          </div>
+
+          <!-- 1-Click Instant Sample PDF Buttons (For testing without needing a file!) -->
+          <div style="margin-top: 24px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px;">
+              <strong style="font-size: 0.95rem; color: var(--text-primary);">⚡ Or Select a Ready-Made Lab PDF to Test in 1-Click:</strong>
+              <span class="text-xs" style="color: var(--text-muted);">No file upload needed</span>
+            </div>
+
+            <div class="sample-pdf-grid">
+              
+              <div class="sample-pdf-card" id="btn-sample-diabetic">
+                <div class="sample-pdf-title">
+                  <span>🍬 Diabetic &amp; Heart PDF</span>
+                </div>
+                <div class="sample-pdf-desc">
+                  Glucose 148 mg/dL, HbA1c 7.4%, BP 146/94 mmHg, thirst &amp; tiredness.
+                </div>
+                <div class="text-xs" style="color: var(--primary-teal); font-weight: 700; margin-top: 8px;">
+                  ➔ Run PDF Analysis
+                </div>
+              </div>
+
+              <div class="sample-pdf-card" id="btn-sample-viral">
+                <div class="sample-pdf-title">
+                  <span>🦠 Viral Flu &amp; Lung PDF</span>
+                </div>
+                <div class="sample-pdf-desc">
+                  Oxygen 93%, High Fever 102.4°F, persistent cough, CRP 38.5 mg/L.
+                </div>
+                <div class="text-xs" style="color: var(--primary-teal); font-weight: 700; margin-top: 8px;">
+                  ➔ Run PDF Analysis
+                </div>
+              </div>
+
+              <div class="sample-pdf-card" id="btn-sample-anemia">
+                <div class="sample-pdf-title">
+                  <span>🩸 Anemia Blood PDF</span>
+                </div>
+                <div class="sample-pdf-desc">
+                  Hemoglobin 9.2 g/dL, Ferritin 11.0 ng/mL, dizziness &amp; chronic fatigue.
+                </div>
+                <div class="text-xs" style="color: var(--primary-teal); font-weight: 700; margin-top: 8px;">
+                  ➔ Run PDF Analysis
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Universal Accessibility Notice for Uneducated / Elderly Patients -->
+          <div style="background: #f8fafc; border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 14px; margin-top: 20px; display: flex; align-items: flex-start; gap: 10px;">
+            <div style="font-size: 1.4rem;">♿</div>
+            <div style="font-size: 0.82rem; color: var(--text-secondary); line-height: 1.4;">
+              <strong>Universal Patient Accessibility:</strong> This platform is designed so patients of any literacy level 
+              can use it without feeling overwhelmed. Our AI converts complex laboratory jargon into plain spoken words and 
+              traffic-light visual icons.
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right Column: AI Analysis Result, Traffic Light Indicator, Audio Advice & PDF Download -->
+        <div class="card" id="analysis-results-card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">
+                <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                AI Clinical Evaluation Result
+              </h3>
+              <p class="card-subtitle" id="analysis-engine-tag">Engine: Ready for evaluation</p>
+            </div>
+            
+            <div id="pdf-download-action-top" style="display: none;">
+              <a href="#" id="btn-download-pdf-top" class="btn btn-primary btn-sm" download>
+                📥 Download Doctor's PDF
+              </a>
+            </div>
+          </div>
+
+          <!-- Empty State (Before PDF is Loaded) -->
+          <div id="results-empty-state" style="text-align: center; padding: 48px 16px;">
+            <div style="width: 80px; height: 80px; margin: 0 auto 16px; border-radius: 50%; background: var(--bg-subtle); display: flex; align-items: center; justify-content: center;">
+              <img src="/static/images/doctor-logo.svg" alt="Doctor" style="width: 50px; height: 50px; opacity: 0.7;">
+            </div>
+            <h4 style="font-size: 1.1rem; color: var(--text-primary); margin-bottom: 6px;">Awaiting Medical PDF Report</h4>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); max-width: 360px; margin: 0 auto 18px;">
+              Drop your doctor or lab PDF on the left, or tap one of the <strong>3 Ready-Made Lab PDFs</strong> to watch the AI automatically analyze it!
+            </p>
+          </div>
+
+          <!-- Dynamic Analysis Output (Populated by JavaScript) -->
+          <div id="results-display-area" style="display: none;">
+            
+            <!-- Traffic Light Banner (Designed for educated & uneducated people) -->
+            <div class="traffic-light-hero yellow" id="output-traffic-hero">
+              <div class="traffic-light-icon" id="output-traffic-icon">🟡</div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase;" id="output-traffic-subtitle">HEALTH STATUS</div>
+                <div style="font-size: 1.35rem; font-weight: 800;" id="output-risk-title">MODERATE RISK (55%)</div>
+                <div style="font-size: 0.88rem; margin-top: 2px;" id="output-traffic-advice">Visit Doctor Within 1-2 Weeks</div>
+              </div>
+
+              <!-- Voice Audio Reader Button (Speaks doctor's advice out loud!) -->
+              <button class="btn-voice-readout" id="btn-voice-readout" title="Listen to doctor's advice spoken in plain English">
+                <span>🔊 Listen to Doctor's Advice</span>
+              </button>
+            </div>
+
+            <!-- Download Official Clinical PDF Callout -->
+            <div style="background: #f0fdfa; border: 1.5px solid var(--primary-teal); border-radius: var(--radius-md); padding: 14px 18px; margin-bottom: 18px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <strong style="color: var(--primary-dark); font-size: 0.95rem;">📄 Dr. AI Medicare Official Report (PDF)</strong>
+                <div class="text-xs" style="color: var(--text-secondary);" id="output-pdf-name">Clinical_Report.pdf</div>
+              </div>
+              <a href="#" id="btn-download-pdf-main" class="btn btn-primary btn-sm" download>
+                📥 Download Doctor's PDF Report
+              </a>
+            </div>
+
+            <!-- Extracted Patient Biometrics Summary -->
+            <div style="background: var(--bg-subtle); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 16px;">
+              <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 6px; text-transform: uppercase;">
+                📊 Automatically Extracted From Your PDF:
+              </div>
+              <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: 0.84rem;" id="output-extracted-grid">
+                <!-- Extracted vitals shown here -->
+              </div>
+            </div>
+
+            <!-- Plain-Language Clinical Summary -->
+            <div style="margin-bottom: 16px;">
+              <h4 style="font-size: 0.88rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 4px; font-weight: 700;">Plain-Language Explanation</h4>
+              <p style="font-size: 0.9rem; color: var(--text-primary); line-height: 1.5;" id="output-clinical-summary"></p>
+            </div>
+
+            <!-- Suspected Conditions & Viruses -->
+            <div style="margin-bottom: 16px;">
+              <h4 style="font-size: 0.88rem; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 8px; font-weight: 700;" data-i18n="results_conditions_title">Possible Health Risks Identified</h4>
+              <div id="output-conditions-list"></div>
+            </div>
+
+            <!-- Recommended Authentic Disease/Virus Medication Schedule -->
+            <div id="output-medications-schedule-box" style="margin-bottom: 18px; background: #ffffff; border: 1.5px solid #0284c7; border-radius: var(--radius-md); padding: 14px 16px; box-shadow: 0 2px 8px rgba(2, 132, 199, 0.08);">
+              <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px; margin-bottom: 6px;">
+                <h4 style="font-size: 0.95rem; text-transform: uppercase; color: #0369a1; margin: 0; font-weight: 800; display: flex; align-items: center; gap: 6px;">
+                  <span>💊</span> <span data-i18n="results_meds_schedule_title">Recommended Original Medications &amp; Daily Intake Schedule</span>
+                </h4>
+                <span class="badge" style="background: #e0f2fe; color: #0284c7; font-size: 0.74rem; font-weight: 700; padding: 3px 8px; border-radius: 999px;" data-i18n="results_meds_badge">
+                  Authentic Certified Pharmacy Brands
+                </span>
+              </div>
+              <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 12px; line-height: 1.4;" data-i18n="results_meds_desc">
+                Clinically verified original medications targeting the identified disease or virus. Follow the scheduled intake timing (Morning, Afternoon, Night) and meal instructions. Take this schedule to buy at any local pharmacy or order directly online below.
+              </p>
+              <div id="output-medications-table-container">
+                <!-- Dynamically populated by JavaScript -->
+              </div>
+            </div>
+
+            <!-- Doctor Recommendation Box -->
+            <div style="background: #f0fdfa; border: 1px solid #99f6e4; border-radius: var(--radius-md); padding: 16px; margin-top: 14px;">
+              <h4 style="color: var(--primary-dark); font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; display: flex; align-items: center; gap: 6px;">
+                <span>👨‍⚕️ Dr. AI Medicare's Next Steps for Patient</span>
+              </h4>
+              <div style="font-size: 0.88rem; color: var(--text-primary); margin-bottom: 4px;">
+                <strong>Recommended Specialist:</strong> <span id="output-specialists">Cardiologist</span>
+              </div>
+              <div style="font-size: 0.88rem; color: var(--text-primary); margin-bottom: 4px;">
+                <strong>Recommended Timeframe:</strong> <span id="output-urgency" style="font-weight: 700; color: var(--danger);">Within 24-48 Hours</span>
+              </div>
+              <div style="font-size: 0.84rem; color: var(--text-secondary);" id="output-rationale"></div>
+            </div>
+
+            <!-- Disclaimer -->
+            <div style="margin-top: 16px; padding-top: 10px; border-top: 1px solid var(--border-light); font-size: 0.76rem; color: var(--text-muted); line-height: 1.4;">
+              <strong>⚠️ Clinical Disclaimer:</strong> This evaluation is an AI decision support tool provided by Dr. AI Medicare under evidence-based clinical protocols. It is intended to guide timely medical attention and does NOT replace a clinical examination by a certified doctor.
+            </div>
+
+          </div>
+
+          <!-- History of Previous PDF Scans -->
+          <div style="margin-top: 24px; padding-top: 14px; border-top: 1px solid var(--border-light);">
+            <h4 style="font-size: 0.86rem; font-weight: 700; color: var(--text-secondary); margin-bottom: 8px;">Previous PDF Reports Stored in Database:</h4>
+            <div id="reports-history-list" class="text-xs" style="color: var(--text-secondary);">
+              Loading previous records...
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 2: MEDICINE REMINDER & ADHERENCE TRACKER
+         ======================================================== -->
+    <div class="tab-pane" id="tab-medications">
+      
+      <!-- Caregiver Missed Dose Alert Banner -->
+      <div class="caregiver-alert-banner" id="caregiver-missed-alert-box" style="display: none; background: #fef2f2; border: 1.5px solid #f87171; border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px; align-items: flex-start; gap: 14px;">
+        <div style="font-size: 2rem; line-height: 1;">🚨</div>
+        <div style="flex: 1;">
+          <strong style="color: var(--danger); font-size: 1rem;">Repeated Missed Doses Detected!</strong>
+          <p style="font-size: 0.88rem; color: var(--text-primary); margin: 4px 0 8px;">
+            Patient Alex Morgan has missed multiple scheduled doses of essential medications. An alert can be dispatched to the designated caregiver to prevent treatment lapse.
+          </p>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <button class="btn btn-danger btn-sm" id="btn-trigger-caregiver-alert">
+              📲 Send Emergency Alert to Caregiver (<span id="alert-caregiver-name">Elena Morgan</span>)
+            </button>
+            <span class="text-xs" style="color: var(--text-muted);" id="caregiver-phone-text">+1 (555) 987-6543</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Compact Medication To-Do List & Adherence Tracker -->
+      <div class="todo-card" id="medication-todo-container">
+        <div class="todo-header">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.3rem;">📋</span>
+              <h3 style="font-size: 1.15rem; font-weight: 800; color: #065f46; margin: 0;">Today's Medication To-Do List</h3>
+            </div>
+            <p style="font-size: 0.82rem; color: #047857; margin-top: 2px;">
+              Check off your prescribed medicines as you take them. Automatic alerts notify caregivers if doses are missed.
+            </p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <!-- Daily Checklist Progress -->
+            <div class="todo-progress-container" title="Daily Medication Adherence Progress">
+              <span style="font-size: 0.82rem; font-weight: 700; color: #065f46;" id="todo-progress-text">Doses Taken</span>
+              <div class="todo-progress-bar-wrap">
+                <div class="todo-progress-bar-fill" id="todo-progress-fill" style="width: 85%;"></div>
+              </div>
+              <span class="adherence-pct" id="adherence-score-display" style="font-size: 0.85rem; font-weight: 800; color: #047857;">85%</span>
+            </div>
+
+            <!-- Adherence Streak Pill -->
+            <span style="background: #fef3c7; color: #b45309; border: 1px solid #fde68a; padding: 4px 10px; border-radius: var(--radius-full); font-size: 0.78rem; font-weight: 700; display: inline-flex; align-items: center; gap: 4px;">
+              🔥 5-Day Streak
+            </span>
+
+            <button class="btn btn-primary btn-sm" id="btn-open-add-med-modal" style="background: #059669; border-color: #059669;">
+              ➕ Add Medicine
+            </button>
+            <button class="btn btn-secondary btn-sm" id="btn-simulate-sound-chime" title="Test medication reminder chime" style="border-color: #a7f3d0;">
+              🔔 Chime
+            </button>
+          </div>
+        </div>
+
+        <!-- Filter Pills by Time of Day -->
+        <div class="todo-filter-pills" id="todo-time-filters">
+          <button type="button" class="todo-filter-btn active" data-time="all">📋 All Doses</button>
+          <button type="button" class="todo-filter-btn" data-time="Morning">☀️ Morning</button>
+          <button type="button" class="todo-filter-btn" data-time="Afternoon">🌤️ Afternoon</button>
+          <button type="button" class="todo-filter-btn" data-time="Evening">🌅 Evening</button>
+          <button type="button" class="todo-filter-btn" data-time="Night">🌙 Bedtime</button>
+        </div>
+
+        <!-- The List of To-Do Items -->
+        <div class="todo-list-wrap" id="medications-container">
+          <div style="text-align: center; padding: 20px; color: var(--text-muted); font-size: 0.88rem;">Loading today's medication to-do list...</div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           SUB-SECTION: ONLINE PHARMACY STORE & DOORSTEP HOME DELIVERY
+           ======================================================== -->
+      <div class="card" id="pharmacy-store-section" style="border: 2px solid #0284c7; background: #ffffff;">
+        <div class="card-header" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: var(--radius-md) var(--radius-md) 0 0; padding: 18px 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.5rem;">🛒</span>
+              <h3 class="card-title" style="color: #0369a1; font-size: 1.25rem;">Dr. AI Medicare Online Pharmacy &amp; Doorstep Delivery</h3>
+            </div>
+            <p class="card-subtitle" style="color: #075985;">
+              Certified clinical-grade medicines delivered straight to your home address in 30 minutes.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button class="btn btn-primary btn-sm" id="btn-order-active-prescriptions" style="background: #0284c7; border-color: #0284c7;" title="Auto-fill cart with your active prescription medicines">
+              ⚡ 1-Click Order Active Prescriptions
+            </button>
+          </div>
+        </div>
+
+        <div style="padding: 20px;">
+          <!-- Pharmacy Search & Category Filters -->
+          <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 16px;">
+            <div style="flex: 1; min-width: 240px; position: relative;">
+              <input type="text" id="input-pharmacy-search" class="form-input" placeholder="🔍 Search medicines, vitamins, inhalers, test strips..." style="padding-left: 14px;">
+            </div>
+            <div style="display: flex; gap: 6px; flex-wrap: wrap;" id="pharmacy-category-filters">
+              <button class="btn btn-sm btn-secondary active-pill" data-category="all">All</button>
+              <button class="btn btn-sm btn-secondary" data-category="Diabetes">Diabetes</button>
+              <button class="btn btn-sm btn-secondary" data-category="Cardiology">Cardiology</button>
+              <button class="btn btn-sm btn-secondary" data-category="Antibiotics">Antibiotics</button>
+              <button class="btn btn-sm btn-secondary" data-category="Respiratory">Respiratory</button>
+              <button class="btn btn-sm btn-secondary" data-category="Medical Device">Devices</button>
+            </div>
+          </div>
+
+          <!-- Product Catalog Grid -->
+          <div class="pharmacy-catalog-grid" id="pharmacy-catalog-grid">
+            <div style="grid-column: 1 / -1; text-align: center; padding: 24px; color: var(--text-muted);">
+              Loading certified medicines from pharmacy inventory...
+            </div>
+          </div>
+
+          <!-- Active Shopping Cart & Doorstep Checkout Bar -->
+          <div id="pharmacy-cart-strip" style="display: none; margin-top: 24px; background: #ecfdf5; border: 1.5px solid #10b981; border-radius: var(--radius-md); padding: 16px 20px; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+            <div style="display: flex; align-items: center; gap: 12px;">
+              <div style="font-size: 2rem;">🛍️</div>
+              <div>
+                <strong style="color: #065f46; font-size: 1.05rem;" id="cart-items-summary">0 items in your pharmacy cart</strong>
+                <div class="text-xs" style="color: #047857;" id="cart-items-list-text">Doorstep delivery available to your registered address</div>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div style="text-align: right;">
+                <div class="text-xs" style="color: #047857; text-transform: uppercase; font-weight: 700;">Total Amount</div>
+                <div style="font-size: 1.4rem; font-weight: 800; color: #065f46;" id="cart-total-display">₹0.00</div>
+              </div>
+              <button class="btn btn-secondary btn-sm" id="btn-clear-cart" style="color: var(--danger); border-color: #fca5a5;">
+                🗑️ Clear Cart
+              </button>
+              <button class="btn btn-primary" id="btn-open-checkout-modal" style="background: #059669; border-color: #059669;">
+                🚀 Proceed to Doorstep Delivery
+              </button>
+            </div>
+          </div>
+
+          <!-- Past Doorstep Delivery Orders Tracking -->
+          <div style="margin-top: 28px; border-top: 1px solid var(--border-light); padding-top: 18px;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 12px; display: flex; align-items: center; gap: 6px;">
+              <span>📦 Live Doorstep Delivery Tracking</span>
+              <span class="text-xs" style="font-weight: 400; color: var(--text-muted);">(Real-time status)</span>
+            </h4>
+            <div id="pharmacy-orders-list">
+              <div style="font-size: 0.85rem; color: var(--text-muted);">No orders placed yet. Add medicines above to order home delivery.</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 3: LIVE NEARBY HOSPITALS & CLINICS LOCATOR
+         ======================================================== -->
+    <div class="tab-pane" id="tab-hospitals">
+      
+      <!-- Top Locator Header & Real-time GPS Detection -->
+      <div style="background: #ffffff; border: 2px solid var(--primary-teal); border-radius: var(--radius-lg); padding: 18px 24px; margin-bottom: 20px; box-shadow: 0 4px 16px rgba(13, 148, 136, 0.08);">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="pulse-indicator" style="display: inline-block;"></span>
+              <h3 style="font-size: 1.35rem; font-weight: 800; color: var(--primary-dark); margin: 0;">
+                Live Nearby Hospitals &amp; Medical Centers Locator
+              </h3>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-top: 4px;">
+              Search real certified hospitals in any city. View interactive Google Maps, turn-by-turn driving directions, ICU bed counts, and emergency ambulance dispatch.
+            </p>
+          </div>
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <button class="btn btn-primary btn-sm" id="btn-detect-location" style="display: flex; align-items: center; gap: 6px;">
+              <span>📍 Detect My Live GPS Location</span>
+            </button>
+            <button class="btn btn-danger btn-sm" id="btn-quick-call-911" title="Emergency Ambulance Dispatch">
+              🚨 Emergency Hotline (108 / 112)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================
+           INTERACTIVE GOOGLE MAPS COMPONENT WITH DIRECT INTEGRATED SEARCH
+           ======================================================== -->
+      <div class="card" id="google-maps-card" style="margin-bottom: 24px; padding: 0; overflow: hidden; border: 2px solid #6366f1; box-shadow: 0 6px 24px rgba(99, 102, 241, 0.15);">
+        
+        <!-- Google Maps Title Header -->
+        <div style="background: linear-gradient(135deg, #eef2ff, #e0e7ff); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; border-bottom: 1px solid #c7d2fe;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 1.5rem;">🗺️</span>
+            <div>
+              <strong style="color: #3730a3; font-size: 1.15rem;">Live Google Maps • Hospital Search &amp; Turn-by-Turn Navigation</strong>
+              <div class="text-xs" style="color: #4338ca;">Search any city or hospital — map automatically re-centers and displays real certified facilities</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; align-items: center;">
+            <span style="font-size: 0.8rem; background: #c7d2fe; color: #312e81; font-weight: 700; padding: 3px 10px; border-radius: 999px;" id="hospitals-count-badge">
+              Loading hospitals...
+            </span>
+          </div>
+        </div>
+
+        <!-- INTEGRATED GOOGLE MAPS SEARCH BAR -->
+        <div style="background: #ffffff; padding: 12px 18px; border-bottom: 1px solid #e2e8f0; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+          <div style="flex: 1; min-width: 260px; position: relative; display: flex; align-items: center;">
+            <span style="position: absolute; left: 12px; font-size: 1.1rem; color: #6366f1;">🔍</span>
+            <input type="text" id="input-hospital-search" placeholder="Search hospitals or cities (e.g. Anantapur, Bengaluru, Hyderabad, Delhi, Chennai, Mumbai, Kurnool, Vizag...)" style="width: 100%; border: 1.5px solid #c7d2fe; border-radius: var(--radius-md); padding: 9px 12px 9px 38px; font-size: 0.92rem; outline: none;">
+          </div>
+          <button type="button" class="btn btn-primary btn-sm" id="btn-search-maps" style="background: #4f46e5; border-color: #4f46e5; padding: 9px 16px; font-weight: 700; display: flex; align-items: center; gap: 6px;">
+            <span>🔍 Search Google Maps</span>
+          </button>
+          <select id="select-hospital-category" class="form-select" style="width: auto; min-width: 170px; padding: 8px 12px; font-size: 0.85rem; border: 1.5px solid #c7d2fe;">
+            <option value="all">All Specialties</option>
+            <option value="Multi-Specialty">Multi-Specialty Hospital</option>
+            <option value="Emergency & Trauma">Emergency &amp; Trauma</option>
+            <option value="Heart Center">Cardiology &amp; Heart</option>
+            <option value="Pulmonology">Pulmonology &amp; Chest</option>
+            <option value="24/7 Outpatient">24/7 OPD &amp; Clinic</option>
+          </select>
+          <button type="button" class="btn btn-secondary btn-sm" id="btn-clear-hospital-search" style="padding: 8px 12px; font-size: 0.82rem;">
+            ✕ Reset
+          </button>
+        </div>
+
+        <!-- City Quick Filter Chips (Directly inside Google Maps Card) -->
+        <div style="padding: 8px 18px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;" id="hospital-city-chips">
+          <span style="font-size: 0.78rem; font-weight: 700; color: #475569; margin-right: 4px;">Quick Cities:</span>
+          <button type="button" class="city-chip active" data-city="all">🇮🇳 All</button>
+          <button type="button" class="city-chip" data-city="Ananthapuramu">📍 Anantapur</button>
+          <button type="button" class="city-chip" data-city="Bengaluru">📍 Bengaluru</button>
+          <button type="button" class="city-chip" data-city="Hyderabad">📍 Hyderabad</button>
+          <button type="button" class="city-chip" data-city="New Delhi">📍 New Delhi</button>
+          <button type="button" class="city-chip" data-city="Chennai">📍 Chennai</button>
+          <button type="button" class="city-chip" data-city="Vellore">📍 Vellore</button>
+          <button type="button" class="city-chip" data-city="Visakhapatnam">📍 Vizag</button>
+          <button type="button" class="city-chip" data-city="Vijayawada">📍 Vijayawada</button>
+          <button type="button" class="city-chip" data-city="Tirupati">📍 Tirupati</button>
+          <button type="button" class="city-chip" data-city="Kurnool">📍 Kurnool</button>
+          <button type="button" class="city-chip" data-city="Mumbai">📍 Mumbai</button>
+          <button type="button" class="city-chip" data-city="Pune">📍 Pune</button>
+        </div>
+
+        <!-- Quick Landmark Pin Shortcuts -->
+        <div style="padding: 6px 18px; background: #ffffff; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap;" id="map-quick-pins">
+          <span style="font-size: 0.75rem; font-weight: 700; color: #64748b;">Fast Focus:</span>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('Government General Hospital (GGH / RIMS)', 'Subhash Road', 'Ananthapuramu')">📍 GGH Anantapur</button>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('Saveera Multi Speciality Hospital', 'R.F. Road', 'Ananthapuramu')">📍 Saveera Hospital</button>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('Manipal Hospital', 'Old Airport Road', 'Bengaluru')">📍 Manipal Bengaluru</button>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('AIIMS', 'Sri Aurobindo Marg', 'New Delhi')">📍 AIIMS New Delhi</button>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('Apollo Health City', 'Jubilee Hills', 'Hyderabad')">📍 Apollo Hyderabad</button>
+          <button type="button" class="btn btn-sm btn-secondary" style="padding: 2px 8px; font-size: 0.75rem;" onclick="focusHospitalOnMap('Christian Medical College (CMC)', 'Ida Scudder Road', 'Vellore')">📍 CMC Vellore</button>
+        </div>
+
+        <div style="position: relative; width: 100%; height: 380px; background: #f1f5f9;">
+          <iframe id="google-maps-iframe" 
+                  width="100%" 
+                  height="380" 
+                  style="border:0;" 
+                  loading="lazy" 
+                  allowfullscreen 
+                  referrerpolicy="no-referrer-when-downgrade" 
+                  src="https://maps.google.com/maps?q=Government+General+Hospital+Ananthapuramu&t=&z=14&ie=UTF8&iwloc=&output=embed">
+          </iframe>
+        </div>
+
+        <div style="background: #ffffff; padding: 10px 20px; font-size: 0.82rem; color: var(--text-secondary); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; border-top: 1px solid var(--border-light);">
+          <span id="active-map-pin-label">📍 Focused on: <strong>Government General Hospital (GGH)</strong>, Subhash Road, Ananthapuramu</span>
+          <a id="btn-open-external-maps" href="https://www.google.com/maps/search/?api=1&query=Government+General+Hospital+Ananthapuramu" target="_blank" style="color: var(--accent-blue); font-weight: 700; text-decoration: none;">
+            Open in Google Maps App ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Live Hospitals Cards Grid -->
+      <div class="hospital-card-grid" id="hospitals-directory-grid">
+        <div style="grid-column: 1 / -1; text-align: center; padding: 32px; color: var(--text-muted);">
+          Scanning nearby medical centers...
+        </div>
+      </div>
+
+      <!-- ========================================================
+           DIGITAL OPD CONSULTATION PASS & SMART QUEUE STATION
+           ======================================================== -->
+      <div class="card" id="digital-opd-card" style="margin-top: 24px; border: 2px solid #0284c7; box-shadow: 0 4px 18px rgba(2, 132, 199, 0.1);">
+        <div class="card-header" style="background: linear-gradient(135deg, #f0f9ff, #e0f2fe); border-bottom: 1.5px solid #bae6fd; padding: 16px 22px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span style="font-size: 1.4rem;">🎫</span>
+              <h3 class="card-title" style="color: #0369a1; font-size: 1.18rem; margin: 0;">Live Hospital Digital OPD Consultation Tokens</h3>
+            </div>
+            <p class="card-subtitle" style="color: #0284c7; margin-top: 4px;">
+              Directly linked to certified hospitals near your live location. Book your verified digital pass to skip long queues.
+            </p>
+          </div>
+          <button class="btn btn-primary btn-sm" id="btn-open-book-token" style="background: #0284c7; border-color: #0284c7; display: flex; align-items: center; gap: 6px; font-weight: 700; padding: 8px 16px;">
+            <span>🎫 Book Digital OPD Token</span>
+          </button>
+        </div>
+
+        <div style="padding: 20px;">
+          <!-- Empty State: Displayed when no token is booked or previous tokens have expired -->
+          <div id="no-booked-token-card" style="text-align: center; padding: 40px 24px; background: #f8fafc; border: 2px dashed #94a3b8; border-radius: var(--radius-md); margin-bottom: 20px;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎫</div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; color: #1e293b; margin-bottom: 6px;">No Active Consultation Token</h4>
+            <p style="font-size: 0.9rem; color: #64748b; max-width: 520px; margin: 0 auto 18px auto; line-height: 1.5;">
+              You do not have any pending OPD appointment tokens. Tokens are valid for the booked day only and automatically expire when the day crosses. Click below or pick any verified hospital from the list to book your official live token.
+            </p>
+            <button type="button" class="btn btn-primary" id="btn-empty-book-token" style="background: #0284c7; border-color: #0284c7; padding: 10px 24px; font-weight: 700; display: inline-flex; align-items: center; gap: 8px;">
+              <span>🎫 Book Digital OPD Token Now</span>
+            </button>
+          </div>
+
+          <!-- Actual Authentic Booked Digital OPD Token Pass Card (Displayed ONLY when user has an active booking) -->
+          <div id="booked-token-pass-card" style="display: none; background: #ffffff; border: 2.5px solid #0284c7; border-radius: 12px; padding: 24px; box-shadow: 0 8px 30px rgba(2, 132, 199, 0.16); margin-bottom: 20px; position: relative;">
+            
+            <!-- Pass Header Bar -->
+            <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 14px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 16px; margin-bottom: 16px;">
+              <div>
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;">
+                  <span style="font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.8px; font-weight: 800; background: #0284c7; color: #ffffff; padding: 3px 8px; border-radius: 4px;">OFFICIAL OPD PASS</span>
+                  <span style="font-size: 0.75rem; color: #64748b; font-weight: 600;" id="display-pass-validity">📅 Valid for Today • Auto-Cancels at Midnight</span>
+                </div>
+                <div style="font-size: 2.2rem; font-weight: 900; color: #0f172a; letter-spacing: 1.5px; display: flex; align-items: center; gap: 12px;">
+                  <span id="display-your-token">OPD-001</span>
+                  <span id="display-token-status" style="font-size: 0.8rem; background: #ecfdf5; color: #065f46; font-weight: 800; padding: 5px 12px; border-radius: 999px; border: 1.5px solid #a7f3d0;">● CONFIRMED • IN QUEUE</span>
+                </div>
+              </div>
+              <div style="text-align: right; background: #f0fdf4; border: 1.5px solid #bbf7d0; border-radius: 8px; padding: 8px 16px;">
+                <div style="font-size: 0.75rem; color: #166534; font-weight: 700; text-transform: uppercase;">Currently Serving</div>
+                <div style="font-size: 1.5rem; font-weight: 900; color: #15803d;" id="display-serving-token">OPD-000</div>
+              </div>
+            </div>
+
+            <!-- Pass Grid Info -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-bottom: 18px;">
+              <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">🏥 Confirmed Hospital</div>
+                <div style="font-size: 1rem; font-weight: 800; color: #0369a1; margin-top: 2px;" id="display-pass-hospital">Government General Hospital (GGH / RIMS)</div>
+                <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;" id="display-pass-hospital-dist">📍 Verified Certified Hospital</div>
+              </div>
+
+              <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">👨‍⚕️ Specialist Doctor &amp; Room</div>
+                <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="display-pass-doctor">Dr. Marcus Vance, MD</div>
+                <div style="font-size: 0.8rem; color: #0284c7; font-weight: 700; margin-top: 2px;" id="display-pass-room">Room 101 • General Medicine</div>
+              </div>
+
+              <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">👤 Patient Information</div>
+                <div style="font-size: 0.98rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="display-pass-patient">Patient Name</div>
+                <div style="font-size: 0.8rem; color: #64748b; margin-top: 2px;" id="display-pass-phone">📞 Contact Number</div>
+              </div>
+
+              <div style="background: #f8fafc; padding: 12px 16px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <div style="font-size: 0.72rem; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px;">⏰ Queue &amp; Slot Status</div>
+                <div style="font-size: 0.95rem; font-weight: 800; color: #0f172a; margin-top: 2px;" id="display-pass-slot">Immediate Live OPD Queue</div>
+                <div style="font-size: 0.82rem; color: #16a34a; font-weight: 700; margin-top: 2px;">Est. Wait: <span id="display-wait-time">15 mins</span> (<span id="display-patients-ahead">2</span> patients ahead)</div>
+              </div>
+            </div>
+
+            <!-- Pass Action Buttons (Turn-by-turn directions, advance, cancel, rebook) -->
+            <div style="display: flex; gap: 10px; align-items: center; justify-content: space-between; flex-wrap: wrap; border-top: 1px solid #e2e8f0; padding-top: 16px;">
+              <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <a id="btn-pass-directions" href="#" target="_blank" class="btn btn-primary btn-sm" style="background: #0284c7; border-color: #0284c7; display: flex; align-items: center; gap: 6px; font-weight: 700;">
+                  <span>🧭</span> <span>Get Directions to Hospital</span>
+                </a>
+                <button type="button" class="btn btn-secondary btn-sm" id="btn-advance-queue" style="display: flex; align-items: center; gap: 6px; font-weight: 600;">
+                  <span>⏩</span> <span>Advance Queue (Simulate Next)</span>
+                </button>
+                <button type="button" class="btn btn-danger btn-sm" id="btn-cancel-token" style="display: flex; align-items: center; gap: 6px; font-weight: 700; background: #dc2626; border-color: #dc2626;">
+                  <span>✕</span> <span>Cancel Token</span>
+                </button>
+              </div>
+
+              <div>
+                <button type="button" class="btn btn-primary btn-sm" id="btn-book-another-token" style="background: #0d9488; border-color: #0d9488; display: flex; align-items: center; gap: 6px; font-weight: 700;">
+                  <span>🎫</span> <span>Book Another Token</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ========================================================
+         TAB 4: PATIENT PROFILE & CAREGIVER CONTACT
+         ======================================================== -->
+    <div class="tab-pane" id="tab-profile">
+      <div class="card" style="max-width: 760px; margin: 0 auto;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Patient Profile &amp; Emergency Caregiver Contact</h3>
+            <p class="card-subtitle">Saved securely in local SQLite database</p>
+          </div>
+        </div>
+
+        <form id="profile-edit-form">
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label">Patient Name</label>
+              <input type="text" class="form-input" id="profile-name" value="Alex Morgan">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Google / Gmail Account</label>
+              <input type="email" class="form-input" id="profile-email" value="alex.morgan@gmail.com">
+            </div>
+          </div>
+
+          <div class="input-grid-3">
+            <div class="form-group">
+              <label class="form-label">Age</label>
+              <input type="number" class="form-input" id="profile-age" value="52">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Gender</label>
+              <select class="form-select" id="profile-gender">
+                <option value="Male" selected>Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Blood Group</label>
+              <input type="text" class="form-input" id="profile-blood" value="O+">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Contact Phone</label>
+            <input type="text" class="form-input" id="profile-phone" value="+1 (555) 234-5678">
+          </div>
+
+          <div style="margin: 18px 0; border-top: 1px solid var(--border-light); padding-top: 14px;">
+            <h4 style="font-size: 0.95rem; font-weight: 700; color: var(--primary-dark); margin-bottom: 10px;">
+              🛡️ Registered Caregiver (For Emergency &amp; Missed Dose Alerts)
+            </h4>
+            <div class="input-grid-2">
+              <div class="form-group">
+                <label class="form-label">Caregiver Name &amp; Relationship</label>
+                <input type="text" class="form-input" id="profile-caregiver-name" value="Elena Morgan (Daughter)">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Caregiver Phone</label>
+                <input type="text" class="form-input" id="profile-caregiver-phone" value="+1 (555) 987-6543">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Caregiver Email</label>
+              <input type="email" class="form-input" id="profile-caregiver-email" value="elena.morgan@email.com">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Known Chronic Medical History</label>
+            <textarea class="form-textarea" id="profile-history" rows="2">Family history of Type 2 Diabetes, Hypertension</textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Save Profile Changes</button>
+        </form>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- ========================================================
+       MODAL 1: AUTHENTIC GOOGLE / GMAIL SIGN-IN CARD
+       ======================================================== -->
+  <div class="modal-overlay" id="google-login-modal">
+    <div class="modal-card" style="max-width: 440px;">
+      <div class="google-card-body">
+        <div class="google-logo-box">
+          <img src="/static/images/google-logo.svg" alt="Google Logo" style="width: 48px; height: 48px;">
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 600; color: #202124; margin-bottom: 4px;">Sign in</h3>
+        <p style="font-size: 0.95rem; color: #5f6368; margin-bottom: 18px;">to continue to Dr. AI Medicare</p>
+
+        <!-- Official Google Identity Services (GSI) Button -->
+        <div id="gsi-button-wrapper" style="display: flex; flex-direction: column; align-items: center; margin-bottom: 14px;">
+          <div id="official-google-gsi-btn" style="min-height: 40px; display: flex; justify-content: center;"></div>
+          <div id="gsi-status-note" style="font-size: 0.74rem; color: #5f6368; margin-top: 4px;">Official Google Identity Services</div>
+        </div>
+
+        <!-- Fast 1-Click Original Verified Profiles -->
+        <div style="text-align: left; margin-bottom: 12px;">
+          <div style="font-size: 0.76rem; font-weight: 700; color: #70757a; text-transform: uppercase; margin-bottom: 6px;">
+            Quick 1-Click Verified Profiles
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 6px;">
+            <button type="button" class="btn btn-secondary" id="btn-quick-google-pruthve" style="width: 100%; border: 1.5px solid #dadce0; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; background: #fff; cursor: pointer; text-align: left;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #0d9488; color: #fff; font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;">
+                P
+              </div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #202124;">Pruthve Kumar</div>
+                <div style="font-size: 0.76rem; color: #5f6368;">pruthve.kumar@gmail.com</div>
+              </div>
+              <span style="font-size: 0.72rem; background: #ecfdf5; color: #065f46; font-weight: 800; padding: 2px 7px; border-radius: 999px;">1-Click</span>
+            </button>
+
+            <button type="button" class="btn btn-secondary" id="btn-quick-google-alex" style="width: 100%; border: 1.5px solid #dadce0; border-radius: 6px; padding: 8px 12px; display: flex; align-items: center; gap: 10px; background: #fff; cursor: pointer; text-align: left;">
+              <div style="width: 32px; height: 32px; border-radius: 50%; background: #1a73e8; color: #fff; font-weight: 800; font-size: 0.9rem; display: flex; align-items: center; justify-content: center;">
+                A
+              </div>
+              <div style="flex: 1;">
+                <div style="font-size: 0.88rem; font-weight: 800; color: #202124;">Alex Morgan</div>
+                <div style="font-size: 0.76rem; color: #5f6368;">alex.morgan@gmail.com</div>
+              </div>
+              <span style="font-size: 0.72rem; background: #e8f0fe; color: #1967d2; font-weight: 800; padding: 2px 7px; border-radius: 999px;">1-Click</span>
+            </button>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; margin: 14px 0; color: #70757a; font-size: 0.78rem;">
+          <div style="flex: 1; height: 1px; background: #dadce0;"></div>
+          <span style="padding: 0 10px; font-weight: 600;">or authenticate real Gmail / Google mail</span>
+          <div style="flex: 1; height: 1px; background: #dadce0;"></div>
+        </div>
+
+        <form id="google-signin-form">
+          <div class="form-group" style="text-align: left; margin-bottom: 10px;">
+            <label class="form-label" style="color: #3c4043; font-weight: 700; font-size: 0.82rem;">Real Google / Gmail Address</label>
+            <input type="email" class="form-input" id="google-input-email" placeholder="e.g. prithve@gmail.com or yourname@gmail.com" required style="border-radius: 6px; padding: 10px 14px; border: 1.5px solid #dadce0;">
+          </div>
+
+          <div class="form-group" style="text-align: left; margin-bottom: 12px;">
+            <label class="form-label" style="color: #3c4043; font-weight: 700; font-size: 0.82rem;">Account Holder Name</label>
+            <input type="text" class="form-input" id="google-input-name" placeholder="e.g. Pruthve Kumar" style="border-radius: 6px; padding: 10px 14px; border: 1.5px solid #dadce0;">
+          </div>
+
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; padding: 8px 12px; margin-bottom: 14px; font-size: 0.78rem; color: #166534; display: flex; align-items: center; gap: 6px;">
+            <span style="font-size: 1rem;">🛡️</span>
+            <span>Direct verified access for all genuine Google / Gmail accounts. Zero authorization blocks.</span>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px;">
+            <button type="button" class="btn btn-secondary btn-sm" data-close-modal style="color: #5f6368; border: 1px solid #dadce0; font-weight: 600; padding: 8px 16px;">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" id="btn-submit-google-signin" style="background: #1a73e8; border-color: #1a73e8; padding: 10px 22px; border-radius: 6px; font-weight: 700; display: flex; align-items: center; gap: 8px; box-shadow: 0 1px 3px rgba(26,115,232,0.3);">
+              <img src="/static/images/google-logo.svg" alt="" style="width: 18px; height: 18px;">
+              <span>Verify &amp; Sign In</span>
+            </button>
+          </div>
+        </form>
+
+        <!-- Collapsible Google Cloud OAuth Client ID Configuration -->
+        <details style="text-align: left; background: #f8f9fa; border: 1px solid #dadce0; border-radius: 6px; padding: 8px 12px; font-size: 0.8rem;">
+          <summary style="cursor: pointer; font-weight: 700; color: #1a73e8; display: flex; align-items: center; gap: 6px;">
+            <span>⚙️ Google Cloud OAuth Client ID (Optional)</span>
+          </summary>
+          <div style="margin-top: 8px; color: #5f6368;">
+            <p style="margin-bottom: 6px; font-size: 0.76rem;">
+              Set your Google Cloud Console OAuth 2.0 Web Client ID to customize Google One Tap and browser OAuth popup:
+            </p>
+            <div style="margin-bottom: 6px;">
+              <input type="text" class="form-input" id="google-client-id-input" placeholder="e.g. 123456789-xyz.apps.googleusercontent.com" style="font-size: 0.76rem; padding: 6px 10px;">
+            </div>
+            <div style="font-size: 0.72rem; color: #70757a; margin-bottom: 8px;">
+              Authorized JavaScript origin: <strong id="google-auth-origin-display">http://localhost:5000</strong>
+            </div>
+            <button type="button" class="btn btn-secondary btn-sm" id="btn-save-google-client-id" style="font-size: 0.75rem; padding: 4px 10px; background: #fff;">
+              Save Client ID
+            </button>
+          </div>
+        </details>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 2: GOOGLE AI STUDIO / GEMINI API KEY SETTINGS
+       ======================================================== -->
+  <div class="modal-overlay" id="gemini-key-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+          <span>🔑 Google AI Studio &amp; Gemini API Configuration</span>
+        </h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 14px;">
+          Connect your Google AI Studio API key to enable Gemini's medical models (Gemini 2.5 Flash / 1.5 Flash).
+          If no key is configured, the system operates seamlessly on the built-in clinical heuristic engine!
+        </p>
+
+        <div class="form-group">
+          <label class="form-label">Google AI Studio API Key</label>
+          <input type="password" class="form-input" id="input-gemini-key" placeholder="AIzaSy...">
+          <div class="text-xs" style="color: var(--text-muted); margin-top: 4px;">
+            Get a free API key at <a href="https://aistudio.google.com/app/apikey" target="_blank" style="color: var(--accent-blue);">Google AI Studio</a>.
+          </div>
+        </div>
+
+        <div style="background: var(--bg-subtle); padding: 12px; border-radius: var(--radius-md); font-size: 0.82rem; margin-bottom: 14px;">
+          <div><strong>Active Engine:</strong> <span id="modal-active-mode">Checking...</span></div>
+          <div><strong>Stored Key:</strong> <span id="modal-key-status">None</span></div>
+        </div>
+
+        <div id="gemini-test-result" style="display: none; padding: 10px; border-radius: var(--radius-sm); font-size: 0.84rem; margin-bottom: 12px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" id="btn-verify-gemini-key">Test Key Connection</button>
+        <button type="button" class="btn btn-primary" id="btn-save-gemini-key">Save &amp; Activate Key</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 3: ADD MEDICATION
+       ======================================================== -->
+  <div class="modal-overlay" id="add-med-modal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700;">➕ Add Scheduled Prescription</h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="add-med-form">
+        <div class="modal-body">
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label">Medicine Name</label>
+              <input type="text" class="form-input" id="med-name-input" placeholder="e.g. Metformin" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Dosage</label>
+              <input type="text" class="form-input" id="med-dosage-input" placeholder="e.g. 500 mg" required>
+            </div>
+          </div>
+
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label">Frequency</label>
+              <select class="form-select" id="med-freq-input">
+                <option value="Once Daily">Once Daily (Morning)</option>
+                <option value="Twice Daily">Twice Daily (Morning &amp; Night)</option>
+                <option value="Three Times Daily">Three Times Daily</option>
+                <option value="At Bedtime">At Bedtime</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Scheduled Time</label>
+              <input type="text" class="form-input" id="med-time-input" value="08:30 AM" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Health Target</label>
+            <input type="text" class="form-input" id="med-condition-input" placeholder="e.g. Blood Sugar / Blood Pressure">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Instructions for Patient</label>
+            <input type="text" class="form-input" id="med-instructions-input" placeholder="e.g. Take with food and glass of water">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary">Save to Schedule</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 4: BOOK HOSPITAL QUEUE TOKEN
+       ======================================================== -->
+  <div class="modal-overlay" id="book-queue-modal">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.18rem; font-weight: 800; display: flex; align-items: center; gap: 8px;">
+          <span>🎫 Book Digital OPD Token at Nearby Hospital</span>
+        </h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="book-queue-form">
+        <div class="modal-body">
+          
+          <!-- Hospital Selection -->
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 700;">🏥 Select Nearby Hospital / Medical Center</label>
+            <select class="form-select" id="booking-hospital-select" required style="border: 1.5px solid #0284c7; background: #f0f9ff; font-weight: 700; color: #0369a1;">
+              <!-- Populated dynamically with real hospitals from directory with live distance -->
+              <option value="Government General Hospital (GGH / RIMS)">Government General Hospital (GGH / RIMS), Ananthapuramu</option>
+              <option value="Saveera Multi Speciality Hospital">Saveera Multi Speciality Hospital, Ananthapuramu</option>
+              <option value="KIMS-Saveera Super Speciality Hospital">KIMS-Saveera Super Speciality Hospital, Ananthapuramu</option>
+              <option value="Manipal Hospital, Old Airport Road">Manipal Hospital, Bengaluru</option>
+              <option value="Apollo Hospitals, Bannerghatta Road">Apollo Hospitals, Bengaluru</option>
+              <option value="Apollo Health City, Jubilee Hills">Apollo Health City, Hyderabad</option>
+              <option value="AIIMS (All India Institute of Medical Sciences)">AIIMS, New Delhi</option>
+            </select>
+          </div>
+
+          <!-- Patient Name & Phone Inputs -->
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label" style="font-weight: 700;">👤 Patient Full Name</label>
+              <input type="text" class="form-input" id="booking-patient-name" placeholder="e.g. Alex Morgan" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-weight: 700;">📞 Contact Phone</label>
+              <input type="tel" class="form-input" id="booking-patient-phone" placeholder="e.g. +91 98765-43210" required>
+            </div>
+          </div>
+
+          <!-- Department & Doctor Selection -->
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 700;">🩺 Medical Department &amp; Specialist Doctor</label>
+            <select class="form-select" id="booking-department-select" required>
+              <option value="General Medicine &amp; Outpatient Screening|Dr. Marcus Vance, MD|Room 101|8">General Medicine &amp; Outpatient Screening (Dr. Marcus Vance, MD - Room 101)</option>
+              <option value="Cardiology &amp; Comprehensive Heart Center|Dr. Sarah Jenkins, MD|Room 204|12">Cardiology &amp; Comprehensive Heart Center (Dr. Sarah Jenkins, MD - Room 204)</option>
+              <option value="Diabetes, Endocrinology &amp; Metabolic Care|Dr. David Patel, MD|Room 112|15">Diabetes, Endocrinology &amp; Metabolic Care (Dr. David Patel, MD - Room 112)</option>
+              <option value="Pulmonology &amp; Respiratory Care|Dr. Rachel Kim, MD|Room 305|10">Pulmonology &amp; Respiratory Care (Dr. Rachel Kim, MD - Room 305)</option>
+              <option value="Orthopedics &amp; Joint Trauma Care|Dr. Sanjay Sharma, MS|Room 108|12">Orthopedics &amp; Joint Trauma Care (Dr. Sanjay Sharma, MS - Room 108)</option>
+              <option value="Pediatrics &amp; Child Health Care|Dr. Ananya Sen, MD|Room 202|10">Pediatrics &amp; Child Health Care (Dr. Ananya Sen, MD - Room 202)</option>
+            </select>
+          </div>
+
+          <!-- Appointment Slot -->
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label" style="font-weight: 700;">⏰ Appointment Slot</label>
+              <select class="form-select" id="booking-slot-select">
+                <option value="Immediate Live OPD Queue (Next Available)" selected>⚡ Immediate Live OPD Queue (Next Available)</option>
+                <option value="Morning Slot (09:30 AM - 11:30 AM)">☀️ Morning Slot (09:30 AM - 11:30 AM)</option>
+                <option value="Afternoon Slot (01:30 PM - 03:30 PM)">🌤️ Afternoon Slot (01:30 PM - 03:30 PM)</option>
+                <option value="Evening Slot (04:30 PM - 06:30 PM)">🌅 Evening Slot (04:30 PM - 06:30 PM)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="font-weight: 700;">🩺 Consultation Type</label>
+              <select class="form-select" id="booking-type-select">
+                <option value="General Outpatient">Regular Consultation</option>
+                <option value="Urgent Specialist">Urgent Clinical Review</option>
+                <option value="Lab Report Followup">Report Follow-up</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Chief Symptoms / Reason for Visit -->
+          <div class="form-group">
+            <label class="form-label" style="font-weight: 700;">📝 Chief Symptoms / Reason for Visit</label>
+            <textarea class="form-textarea" id="booking-symptoms" rows="2" placeholder="e.g. High fever, persistent cough, blood sugar report review, chest discomfort..."></textarea>
+          </div>
+
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: var(--radius-md); font-size: 0.82rem; color: #166534;">
+            <strong>ℹ️ Smart Queue Fast-Pass:</strong> Your digital queue token will be linked to the hospital's live patient queue system. You will receive an estimated wait time and live turn tracking.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary" style="background: #0284c7; border-color: #0284c7; font-weight: 700;">
+            🎫 Generate &amp; Confirm Token
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 5: PHARMACY DOORSTEP DELIVERY CHECKOUT
+       ======================================================== -->
+  <div class="modal-overlay" id="checkout-order-modal">
+    <div class="modal-card" style="max-width: 540px;">
+      <div class="modal-header">
+        <h3 style="font-size: 1.15rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+          <span>📦 Confirm Doorstep Medicine Delivery</span>
+        </h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="pharmacy-checkout-form">
+        <div class="modal-body">
+          
+          <!-- Order Summary Card -->
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: var(--radius-md); padding: 12px 16px; margin-bottom: 16px;">
+            <div style="font-size: 0.8rem; font-weight: 700; color: #166534; text-transform: uppercase; margin-bottom: 6px;">Order Summary:</div>
+            <div id="checkout-items-preview" style="font-size: 0.88rem; color: #14532d; max-height: 120px; overflow-y: auto;">
+              <!-- Items list injected here -->
+            </div>
+            <div style="margin-top: 8px; pt-2; border-top: 1px dashed #86efac; display: flex; justify-content: space-between; align-items: center;">
+              <span style="font-size: 0.88rem; font-weight: 700; color: #166534;">Total Amount to Pay:</span>
+              <span style="font-size: 1.25rem; font-weight: 800; color: #15803d;" id="checkout-total-price">₹0.00</span>
+            </div>
+          </div>
+
+          <!-- Address Fields -->
+          <div class="form-group">
+            <label class="form-label">Doorstep Delivery Address</label>
+            <input type="text" class="form-input" id="checkout-address" value="742 Evergreen Terrace, Apt 4B" required>
+          </div>
+
+          <div class="input-grid-2">
+            <div class="form-group">
+              <label class="form-label">City / District</label>
+              <input type="text" class="form-input" id="checkout-city" value="Metro District" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Contact Phone</label>
+              <input type="text" class="form-input" id="checkout-phone" value="+91 98765-43210" required>
+            </div>
+          </div>
+
+          <!-- Delivery Speed -->
+          <div class="form-group">
+            <label class="form-label">Delivery Speed</label>
+            <div class="delivery-speed-options">
+              <div class="delivery-option-card selected" id="opt-express" onclick="selectDeliverySpeed('Express 30-min Delivery')">
+                <div style="font-size: 1.2rem;">⚡</div>
+                <div style="font-weight: 700; font-size: 0.88rem; color: var(--primary-dark);">Express Delivery</div>
+                <div class="text-xs" style="color: var(--text-secondary);">30-45 minutes</div>
+              </div>
+              <div class="delivery-option-card" id="opt-standard" onclick="selectDeliverySpeed('Standard Same-Day Delivery')">
+                <div style="font-size: 1.2rem;">📦</div>
+                <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-primary);">Same-Day Delivery</div>
+                <div class="text-xs" style="color: var(--text-secondary);">By 6:00 PM (Free)</div>
+              </div>
+            </div>
+            <input type="hidden" id="checkout-delivery-type" value="Express 30-min Delivery">
+          </div>
+
+          <!-- Payment Method -->
+          <div class="form-group">
+            <label class="form-label">Payment Option</label>
+            <select class="form-select" id="checkout-payment-method">
+              <option value="Cash on Delivery">💵 Cash on Delivery (Pay upon arrival)</option>
+              <option value="Google Pay / UPI">📱 Google Pay / Instant UPI (₹)</option>
+              <option value="Health Card / Credit Card">💳 Health Card / Debit &amp; Credit Card</option>
+            </select>
+          </div>
+
+          <div style="background: var(--bg-subtle); padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.8rem; color: var(--text-secondary);">
+            <strong>🛡️ Clinical Quality Guarantee:</strong> All medications are dispensed in tamper-evident packaging with verified batch tracking.
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-primary" id="btn-submit-pharmacy-order" style="background: #059669; border-color: #059669;">
+            ✅ Confirm &amp; Dispatch Order
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ========================================================
+       MODAL 6: EMERGENCY AMBULANCE DISPATCH
+       ======================================================== -->
+  <div class="modal-overlay" id="ambulance-dispatch-modal">
+    <div class="modal-card" style="max-width: 500px;">
+      <div class="modal-header" style="background: #fef2f2; border-radius: var(--radius-lg) var(--radius-lg) 0 0;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--danger); display: flex; align-items: center; gap: 8px;">
+          <span>🚨 Request Emergency Paramedic Ambulance</span>
+        </h3>
+        <button class="close-btn" data-close-modal>&times;</button>
+      </div>
+      <form id="ambulance-dispatch-form">
+        <div class="modal-body">
+          <div style="background: #fff1f2; border: 1.5px solid #fecdd3; border-radius: var(--radius-md); padding: 12px 14px; margin-bottom: 14px;">
+            <div style="font-size: 0.82rem; font-weight: 700; color: #9f1239;">Dispatching From Hospital:</div>
+            <strong style="font-size: 0.95rem; color: #881337;" id="amb-hospital-display">Government General Hospital Emergency Casualty</strong>
+            <div class="text-xs" style="color: #be123c; margin-top: 4px;">🚨 Estimated Ambulance Arrival: <strong>7 Minutes</strong></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Patient Pick-up Location</label>
+            <input type="text" class="form-input" id="amb-location-input" value="742 Evergreen Terrace, Metro District" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Contact Phone for Ambulance Driver</label>
+            <input type="text" class="form-input" id="amb-phone-input" value="+91 98765-43210" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Patient Medical State / Critical Symptoms</label>
+            <input type="text" class="form-input" id="amb-symptoms-input" value="Chest tightness, shortness of breath, needs immediate care" placeholder="Describe emergency state...">
+          </div>
+
+          <div style="font-size: 0.78rem; color: var(--text-muted); background: var(--bg-subtle); padding: 10px; border-radius: var(--radius-sm);">
+            🚑 <strong>Vehicle Equipment:</strong> Advanced Life Support (ALS), Portable Defibrillator (AED), Continuous Oxygen, Registered Paramedic onboard.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-close-modal>Cancel</button>
+          <button type="submit" class="btn btn-danger" style="background: var(--danger); border-color: var(--danger);">
+            🚨 Confirm Ambulance Dispatch Now
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Neatly Arranged Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div style="width: 44px; height: 44px; background: #f0fdfa; border: 1.5px solid #0d9488; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem;">
+          🩺
+        </div>
+        <div>
+          <strong style="color: var(--text-primary); font-size: 0.95rem;">Dr. AI Medicare</strong>
+          <div class="text-xs" style="color: var(--text-secondary);">Clinical Decision Support &amp; Healthcare AI Network</div>
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 24px; font-size: 0.85rem; color: var(--text-secondary);">
+        <span>📞 24/7 Helpline: <strong>+91 800-555-AIMEDICARE</strong></span>
+        <span>🏥 Emergency: <strong>OPD &amp; Critical Care Wing</strong></span>
+      </div>
+
+    </div>
+
+    <div class="footer-disclaimer">
+      Clinical Health Notice: Dr. AI Medicare utilizes Artificial Intelligence to support clinicians and patients 
+      in recognizing early chronic disease markers and improving medication adherence. This system is an assistive clinical 
+      decision support instrument and does not replace examination, diagnosis, or treatment by a licensed physician.
+    </div>
+  </footer>
+
+  <script src="/static/js/app.js?v=2.6.0"></script>
+</body>
+</html>

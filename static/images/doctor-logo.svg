@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="medGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f766e" />
+      <stop offset="50%" stop-color="#0284c7" />
+      <stop offset="100%" stop-color="#2563eb" />
+    </linearGradient>
+    <linearGradient id="ringPulse" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#10b981" />
+      <stop offset="50%" stop-color="#06b6d4" />
+      <stop offset="100%" stop-color="#3b82f6" />
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0284c7" flood-opacity="0.25"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Pulse Circle with Dash Glow -->
+  <circle cx="100" cy="100" r="92" fill="#ffffff" stroke="url(#ringPulse)" stroke-width="4" filter="url(#glow)" />
+  <circle cx="100" cy="100" r="84" fill="#f8fafc" stroke="#e2e8f0" stroke-width="1.5" />
+
+  <!-- Medical Cross Silhouette in Background -->
+  <path d="M 88 40 H 112 V 68 H 140 V 92 H 112 V 120 H 88 V 92 H 60 V 68 H 88 Z" fill="#e0f2fe" opacity="0.6"/>
+
+  <!-- Doctor Figure Body & Coat -->
+  <!-- Shoulders & Coat -->
+  <path d="M 45 168 C 45 130, 65 116, 85 112 L 100 126 L 115 112 C 135 116, 155 130, 155 168 Z" fill="url(#medGradient)" />
+  
+  <!-- Doctor Shirt & Tie/Stethoscope Neck Area -->
+  <polygon points="100,126 88,114 112,114" fill="#ffffff" />
+  <polygon points="100,126 95,114 105,114" fill="#0284c7" />
+
+  <!-- Doctor Head / Face -->
+  <ellipse cx="100" cy="80" rx="24" ry="28" fill="#fde047" opacity="0.2"/>
+  <circle cx="100" cy="78" r="22" fill="#38bdf8" />
+  
+  <!-- Doctor Head Mirror / Medical Cap Badge -->
+  <path d="M 78 72 C 78 56, 122 56, 122 72 Z" fill="#0f766e" />
+  <circle cx="100" cy="62" r="5" fill="#ffffff" stroke="#0f766e" stroke-width="1.5" />
+  <circle cx="100" cy="62" r="2" fill="#0284c7" />
+
+  <!-- Stethoscope around Neck -->
+  <path d="M 80 114 C 74 128, 74 148, 88 152 C 96 154, 104 146, 104 138" fill="none" stroke="#f8fafc" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M 120 114 C 126 128, 126 148, 112 152" fill="none" stroke="#f8fafc" stroke-width="3.5" stroke-linecap="round"/>
+  <!-- Stethoscope Chest Piece Bell -->
+  <circle cx="104" cy="142" r="5" fill="#f8fafc" stroke="#0f766e" stroke-width="2"/>
+  <circle cx="104" cy="142" r="2" fill="#10b981"/>
+
+  <!-- Dynamic Heartbeat / ECG Wave Ribbon -->
+  <path d="M 24 100 H 60 L 68 85 L 76 115 L 86 65 L 96 130 L 106 90 L 114 105 L 122 96 L 130 100 H 176" 
+        fill="none" stroke="#10b981" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" />
+  <circle cx="176" cy="100" r="4" fill="#10b981"/>
+
+  <!-- AI Pulse Nodes -->
+  <circle cx="86" cy="65" r="3.5" fill="#38bdf8" />
+  <circle cx="96" cy="130" r="3.5" fill="#38bdf8" />
+</svg>
